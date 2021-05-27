@@ -1,2 +1,3 @@
 # Algorithm
-Contains all basic and standard Algorithms.
+Contains all basic and standard Algorithms. 
+Feel free to contribute :)
