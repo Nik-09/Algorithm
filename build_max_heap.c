@@ -1,29 +1,36 @@
-// Heap is array representation of complete binary tree.
-// Max heapify is the method to maintain teh property of max heap.
+// Builds max heap from unordered input array. Simple upper bound is O(nlgn) but this
+// is not asymptotically tight.
 
 #include<stdio.h>
 
-void max_heapify(int a[], int n, int index); //declarartion of max_heapify.
+void build_max_heap(int a[], int n);
+void max_heapify(int a[], int n, int index);
 void print(int a[], int n);
 
 int main(void) {
-    int n; //size of the heap.
+    int n;
     scanf("%d", &n);
+
     int a[n];
-    for (int i = 0; i < n; i++) //input of heap.
+    for (int i = 0; i < n; i++) //Random input array.
         scanf("%d", &a[i]);
-    int index = 1;
-    max_heapify(a, n, index); //calling of max-heap.
+
+    build_max_heap(a, n);
 
     print(a, n);
-    return 0;
 }
 void print(int a[], int n){
     for (int i = 0; i < n; i++) //printing all the elements of max-heap.
         printf("%d, ", a[i]);
 }
 
+void build_max_heap(int a[], int n) {
+    for (int i = n/2; i >= 0; i--) {
+        max_heapify(a, n, i);
+    }
+}
 void max_heapify(int a[], int n, int index) {
+    // O(lgn) or O(h), where h is height of the heap.
     int largest;
     int left = 2*index + 1;
     int right = 2*index + 2;
@@ -42,5 +49,3 @@ void max_heapify(int a[], int n, int index) {
         max_heapify(a, n, largest);
     }
 }
-
-// T(n) <= T(2n/3) + O(1) ---------> O(lgn)
